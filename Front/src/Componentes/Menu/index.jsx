@@ -2,7 +2,7 @@ import './style.sass';
 
 export function Menu(){
     return(
-        <div className='container'>
+        <div className='menuContainer'>
             <table>
                 <tr>
                     <td>Professores</td>

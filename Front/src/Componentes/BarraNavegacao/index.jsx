@@ -2,12 +2,14 @@ import './style.sass'
 
 export function BarraNavegacao(){
     return(
-        <nav className='container'>
+        <nav>
             <ul>
                 <li>Escola</li>
-                <li>Missão</li>
-                <li>Visão</li>
-                <li>Valores</li>
+                <li>Sobre nós</li>
+                <li>Professores</li>
+                <li>Gestores</li>
+                <li>Disciplina</li>
+                <li>Ambientes</li>
             </ul>
         </nav>
     )

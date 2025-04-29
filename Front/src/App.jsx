@@ -7,9 +7,9 @@ function App() {
 
   return (
     <>
-      <BarraNavegacao />
       <Header />
-      <Conteudo />
+      <BarraNavegacao />
+      {/* <Conteudo /> */}
     </>
   )
 }
