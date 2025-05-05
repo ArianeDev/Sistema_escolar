@@ -15,9 +15,17 @@ TIPO_USUARIO = [
 class Usuario(AbstractUser):
     ni = models.CharField(max_length=15)
     telefone = models.CharField(max_length=14)
-    dt_nascimeno = models.DateField()
+    dt_nascimento = models.DateField()
     dt_contratacao = models.DateField()
     tipo_usuario = models.CharField(max_length=20, choices=TIPO_USUARIO)
+
+    # Evitar conflito com o Django
+    groups = models.ManyToManyField(
+        "auth.Group", related_name="usuario_groups"
+    )
+    user_permissions = models.ManyToManyField(
+        "auth.Permission", related_name="usuario_permissions"
+    )
 
 class Disciplina(models.Model):
     nome = models.CharField(max_length=100)
@@ -26,7 +34,7 @@ class Disciplina(models.Model):
     decricao = models.CharField(max_length=255)
     professor_responsavel = models.ForeignKey(Usuario, on_delete=models.CASCADE)
 
-class Ambiente:
+class Ambiente(models.Model):
     dt_inicio = models.DateField()
     dt_termino = models.DateField()
     periodo = models.CharField(max_length=10, choices=PERIODO)

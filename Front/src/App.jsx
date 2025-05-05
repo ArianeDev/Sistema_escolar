@@ -1,15 +1,11 @@
 import './App.css'
-import { BarraNavegacao } from './Componentes/BarraNavegacao'
-import { Conteudo } from './Componentes/Conteudo'
-import { Header } from './Componentes/Header'
+import { Login } from './Pages/Login'
 
 function App() {
 
   return (
     <>
-      <Header />
-      <BarraNavegacao />
-      {/* <Conteudo /> */}
+      <Login/>
     </>
   )
 }

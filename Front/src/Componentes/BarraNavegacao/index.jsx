@@ -4,7 +4,7 @@ export function BarraNavegacao(){
     return(
         <nav>
             <ul>
-                <li>Escola</li>
+                <li>Home</li>
                 <li>Sobre nós</li>
                 <li>Professores</li>
                 <li>Gestores</li>
