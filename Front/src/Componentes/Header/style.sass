@@ -1,14 +1,30 @@
+$color-white: rgb(255, 255, 255)
+$color-gray: rgb(200, 200, 200)
+$color-black: rgb(0, 0, 0)
+    
 header
     display: flex
-    justify-content: start
+    justify-content: space-between
     align-items: center
-    background-color: rgb(1,1,10)
+    background-color: $color-white
+    box-shadow: 10px 1px 10px $color-gray
     height: 9vh
 
     h1
         margin-left: 2rem
         font-size: 2rem
-        color: rgb(251, 152, 60)
-        
+        color: rgb(0, 0, 0)
         justify-content: center
         text-align: center
+
+    nav
+        margin-right: 2rem
+
+        ul
+            list-style-type: none
+            display: flex
+
+            li
+                text-decoration: none
+                margin: 1rem
+                color: $color-black

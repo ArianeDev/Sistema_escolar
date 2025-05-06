@@ -1,7 +1,9 @@
+import './style.sass';
+
 export function Input({ type, placeholder}){
     return(
         <div className="input_container">
-            <input type={type} placeholder={placeholder}/>
+            <input type={type} placeholder={placeholder} className='inputForms'/>
         </div>
     )
 }

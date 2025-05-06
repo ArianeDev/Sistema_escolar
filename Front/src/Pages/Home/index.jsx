@@ -1,13 +1,9 @@
-import { BarraNavegacao } from './Componentes/BarraNavegacao'
-import { Conteudo } from './Componentes/Conteudo'
-import { Header } from './Componentes/Header'
+import { NavBar } from '../../Componentes/NavBar';
 
 export function Home(){
     return(
         <>
-            <Header />
-            
-            <BarraNavegacao />
+            <NavBar />
         </>
     )
 }
