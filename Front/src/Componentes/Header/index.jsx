@@ -19,7 +19,7 @@ export function Header(){
     return(
         <header>
             <h1>Escola da DS15</h1>
-            <nav>
+            <nav className='navHeader'>
                 <ul>
                 {listHeader.map((item, key) => (
                     <Link to={item.endpoint}><li>{item.title}</li></Link>
