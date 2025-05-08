@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import GlobalLayout  from "./Layout";
 import { Home } from "./Pages/Home";
 import { Login } from "./Pages/Login";
+import { Forms } from "./Pages/Forms";
 
 const router = createBrowserRouter([
     {
@@ -10,13 +11,17 @@ const router = createBrowserRouter([
         element: <GlobalLayout />,
         children: [
             {
+                path: "/login",
+                element: <Login />,
+            },
+            {
                 path: "/",
                 element: <Home />,
             },
             {
-                path: "/login",
-                element: <Login />,
-            },
+                path: "/atualizar",
+                element: <Forms />
+            }
         ]
     }
 ])

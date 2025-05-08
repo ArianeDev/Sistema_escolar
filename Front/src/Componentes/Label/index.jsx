@@ -1,3 +1,5 @@
+import './style.sass';
+
 export function Label({ title }){
     return(
         <div className="label_container">

@@ -1,9 +1,13 @@
-import { NavBar } from '../../Componentes/NavBar';
+
+import { Table } from '../../Componentes/Table';
+import './style.sass'
 
 export function Home(){
     return(
-        <>
-            <NavBar />
-        </>
+        <main>
+            <div className="table">
+                <Table />
+            </div>
+        </main>
     )
 }

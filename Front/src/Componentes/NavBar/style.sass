@@ -3,19 +3,26 @@ $color-gray: rgb(200, 200, 200)
 $color-primary: rgb(234, 23, 87)
 
 .navBar
+    position: fixed
     background-color: $color-white
     display: flex
     flex-direction: column
-    width: 30%
-    height: 90vh
+    width: 12vw
+    height: 91vh
     padding: 1rem 0 0 1rem
+    box-shadow: 0px 10px 10px $color-gray
     
     .p-icon
         color: #000
 
     .p-menuitem-text
         color: #000
-        mar
+        font-weight: 500
+        margin: 1rem 0.3rem
+
+    .p-menuitem-text:hover,
+    .p-icon:hover
+        color: #a1a1a1
 
     .p-menuitem-link
         display: flex
@@ -25,5 +32,3 @@ $color-primary: rgb(234, 23, 87)
         height: 2.5rem
         margin-left: 1rem
         transition: .2s ease-out
-
-
