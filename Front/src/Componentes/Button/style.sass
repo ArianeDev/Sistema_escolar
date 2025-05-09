@@ -1,20 +1,22 @@
-$color-button: rgb(170, 238, 234)
+$color-button: rgb(189, 19, 98)
 $color-button-hover: rgb(0, 204, 193)
+$color-white: rgb(255, 255, 255)
     
 .buttonContainer
     display: flex
     justify-content: center
 
     .inputButton
-        width: 10vw
-        font-size: 16px
-        cursor: pointer
+        background-color: $color-button
         border: none
         border-radius: 0.2rem
+        color: $color-white
+        cursor: pointer
+        font-size: 16px
+        margin-top: 2rem
         padding: 0.8rem 2rem
-        margin-top: 1.5rem
-        background-color: $color-button
         transition: .5s all
+        width: 10vw
 
     :hover
         background-color: $color-button-hover

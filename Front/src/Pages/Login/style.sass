@@ -1,24 +1,50 @@
 $color-white: rgb(255, 255, 255)
+$color-primary: linear-gradient(200deg, rgb(189, 19, 98), rgb(131, 4, 63)) 
 
 .mainLogin
     display: flex
     justify-content: center
-    align-items: center
-    height: 80vh
+    height: 100vh
 
     .loginForms
         display: flex
         align-items: center
-        flex-direction: row
-        gap: 10rem
-        padding: 2.5rem
-        border-radius: 0.3rem
-        background-color: $color-white
+        width: 70%
+        height: 100%
 
-        h1
-            text-align: center
-            margin-bottom: 1rem
+        .formLogin, .mensage
+            display: flex
+            align-items: center
+            justify-content: center
+            flex-direction: column
+            padding: 2rem
+            height: 70%
+            width: 50%
+            box-shadow: 4px 4px 10px rgb(90, 0, 42)
 
-        form
-            width: 40%
-            margin-right: 5rem
+        .formLogin     
+            background-color: $color-white
+            z-index: 999
+
+            .titleLogin
+                display: flex
+                align-items: center
+
+                .iconUser
+                    width: 2rem
+                    height: 2rem
+
+                .h1_titleLogin
+                    font-weight: 400
+
+        .mensage
+            justify-content: center
+            background: $color-primary
+            color: $color-white
+            padding: 0 2rem
+            overflow: hidden
+            
+
+            h1
+                text-align: center
+                margin-bottom: 1rem

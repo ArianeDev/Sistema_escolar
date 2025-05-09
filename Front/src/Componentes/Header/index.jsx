@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { GraduationCap } from 'lucide-react'
 import { Link } from 'react-router-dom';
 import './style.sass';
 
@@ -18,7 +18,10 @@ export function Header(){
 
     return(
         <header>
-            <h1>Escola da DS15</h1>
+            <div className="logo">
+                <GraduationCap className='iconGradutionCap' />
+                <h1 className='nameLogo'>EduManager</h1>
+            </div>
             <nav className='navHeader'>
                 <ul>
                 {listHeader.map((item, key) => (

@@ -1,6 +1,10 @@
 import { PanelMenu } from 'primereact/panelmenu';
+import { useNavigate } from 'react-router-dom';
 import './style.sass'
+
 export function NavBar() {
+    const navigate = useNavigate();
+
     const items = [
         {
             label: 'Professor',
@@ -8,9 +12,11 @@ export function NavBar() {
             items: [
                 {
                     label: 'Cadastrar',
+                    command: () => navigate('/atualizar')
                 },
                 {
                     label: 'Visualizar',
+                    command: () => navigate('/home')
                 }
             ]
         },
@@ -20,9 +26,11 @@ export function NavBar() {
             items: [
                 {
                     label: 'Cadastrar',
+                    command: () => navigate('/atualizar')
                 },
                 {
                     label: 'Visualizar',
+                    command: () => navigate('/home')
                 }
             ]
         },
@@ -32,9 +40,11 @@ export function NavBar() {
             items: [
                 {
                     label: 'Cadastrar',
+                    command: () => navigate('/atualizar')
                 },
                 {
                     label: 'Visualizar',
+                    command: () => navigate('/home')
                 }
             ]
         },
@@ -46,4 +56,3 @@ export function NavBar() {
         </div>
     )
 }
-        

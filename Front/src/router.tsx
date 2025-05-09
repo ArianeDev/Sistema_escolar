@@ -7,13 +7,13 @@ import { Forms } from "./Pages/Forms";
 
 const router = createBrowserRouter([
     {
+        path: "/login",
+        element: <Login />,
+    },
+    {
         path: "/",
         element: <GlobalLayout />,
         children: [
-            {
-                path: "/login",
-                element: <Login />,
-            },
             {
                 path: "/",
                 element: <Home />,
@@ -23,6 +23,7 @@ const router = createBrowserRouter([
                 element: <Forms />
             }
         ]
+
     }
 ])
 

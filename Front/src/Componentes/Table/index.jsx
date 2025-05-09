@@ -3,7 +3,7 @@ import { UserPen } from 'lucide-react';
 import { Trash2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-export function Table({onClose}){
+export function Table(){
 
 
     const list = [

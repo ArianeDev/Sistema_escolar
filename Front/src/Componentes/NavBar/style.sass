@@ -19,11 +19,14 @@ $color-primary: rgb(234, 23, 87)
         color: #000
         font-weight: 500
         margin: 1rem 0.3rem
+        transition: all ease 0.5s
+        height: 1rem
 
     .p-menuitem-text:hover,
     .p-icon:hover
         color: #a1a1a1
-
+        animation: borderBottom 1s ease-out infinite
+        
     .p-menuitem-link
         display: flex
         aling-items: center
@@ -32,3 +35,9 @@ $color-primary: rgb(234, 23, 87)
         height: 2.5rem
         margin-left: 1rem
         transition: .2s ease-out
+
+@keyframes borderBottom 
+    0%
+        border-bottom: 1px solid #a1a1a1
+    100%
+        border-bottom: 1px solid #a1a1a1
