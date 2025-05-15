@@ -2,9 +2,9 @@ import { Input } from '../Input';
 import { Label } from '../Label';
 import { Button } from '../Button';
 
-export function FormsInputs({ listInput, method, submitFuction }){
+export function FormsInputs({ listInput, method}){
     return(
-        <form method={method} onSubmit={submitFuction}>
+        <form method={method} >
             {listInput.map((item, key) => (
                 <div className="containerInput">
                     <Label title={item.labelName}/>
