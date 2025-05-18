@@ -6,12 +6,8 @@ export function Header(){
 
     const listHeader = [
         {
-            "title": "Home",
-            "endpoint": "/"
-        },
-        {
-            "title": "Login",
-            "endpoint": "/login"
+            "title": "Perfil",
+            "endpoint": "/perfil"
         },
 
     ]
@@ -25,7 +21,7 @@ export function Header(){
             <nav className='navHeader'>
                 <ul>
                 {listHeader.map((item, key) => (
-                    <Link to={item.endpoint}><li>{item.title}</li></Link>
+                    <li><Link to={item.endpoint} className='link'>{item.title}</Link></li>
                 ))}
                 </ul>
             </nav>

@@ -1,19 +1,22 @@
 $color-white: rgb(255, 255, 255)
 $color-gray: rgb(200, 200, 200)
 $color-black: rgb(0, 0, 0)
+$color-primary: rgb(189, 19, 98)
     
 header
+    width: 100%
     display: flex
     justify-content: space-between
     align-items: center
     background-color: $color-white
-    box-shadow: 10px 1px 10px $color-gray
+    box-shadow: 15rem 1px 10px $color-gray
     height: 9vh
+    z-index: 9
 
     .logo
         display: flex
         align-items: center
-        color: rgb(189, 19, 98)
+        color: $color-primary
 
         .iconGradutionCap
             margin-left: 2rem
@@ -33,6 +36,13 @@ header
             display: flex
 
             li
-                text-decoration: none
                 margin: 1rem
-                color: $color-black
+
+                .link
+                    color: $color-black
+                    text-decoration: none
+                    letter-spacing: 1px
+                    transition: all .2s
+
+                .link:hover
+                    color: $color-primary

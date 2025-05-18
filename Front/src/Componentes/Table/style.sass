@@ -3,35 +3,41 @@ $color-white: rgb(255,255,255)
 table
     background-color: $color-white
     border-radius: 0.2rem
-    padding: 1rem 2rem
-    width: 95%
-    overflow: hidden
+    padding: 1rem
+    width: 82vw
+    margin-left: 14vw
+    margin-top: 1rem
 
     thead
-        width: 1000vw
-        height: 5vh
+        height: 6vh
+
+        th
+            font-weight: 500
+            word-wrap: break-word
+            overflow-wrap: break-word
 
         .actionData
             width: 4rem
 
     tbody
-        height: 15vh
+
+        td
+            word-wrap: break-word
+            overflow-wrap: break-word
+            padding: 0 1rem
 
         .itensTable
             text-align: center
 
         .icons
-            width: 4rem
             display: flex
             flex-direction: row-reverse
             justify-content: space-between
-            margin-top: 0.7rem
+            height: 10vh
+            align-items: center
 
             .trash
                 color: rgb(218, 0, 0)
-                
+
             .userPen
                 color: rgb(167, 167, 167)
-
-    td
-        height: 2px

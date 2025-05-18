@@ -7,16 +7,16 @@ export function NavBar() {
 
     const items = [
         {
-            label: 'Professor',
+            label: 'Ambientes',
             icon: 'pi pi-file',
             items: [
                 {
                     label: 'Cadastrar',
-                    command: () => navigate('/atualizar')
+                    command: () => navigate('/cadastrarAmbiente')
                 },
                 {
                     label: 'Visualizar',
-                    command: () => navigate('/home')
+                    command: () => navigate('/ambiente')
                 }
             ]
         },
@@ -26,21 +26,21 @@ export function NavBar() {
             items: [
                 {
                     label: 'Cadastrar',
-                    command: () => navigate('/atualizar')
+                    command: () => navigate('/cadastrarDisciplina')
                 },
                 {
                     label: 'Visualizar',
-                    command: () => navigate('/home')
+                    command: () => navigate('/disciplina')
                 }
             ]
         },
         {
-            label: 'Ambientes',
+            label: 'Professor',
             icon: 'pi pi-file',
             items: [
                 {
                     label: 'Cadastrar',
-                    command: () => navigate('/atualizar')
+                    command: () => navigate('/cadastrarProfessor')
                 },
                 {
                     label: 'Visualizar',
