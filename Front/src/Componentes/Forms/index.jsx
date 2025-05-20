@@ -3,7 +3,7 @@ import { Label } from '../Label';
 import { Button } from '../Button';
 import './style.sass';
 
-export function FormsInputs({ listInput, method, title}){
+export function FormsInputs({ register, listInput, method, title}){
     return(
         <div className="containerForm">
             <div className="forms">
@@ -12,7 +12,7 @@ export function FormsInputs({ listInput, method, title}){
                     {listInput.map((item, key) => (
                         <div className="containerInput">
                             <Label title={item.labelName}/>
-                            <Input type={item.type} placeholder={item.placeholder}/>
+                            <Input register={register} atributo={item.atributo} type={item.type} placeholder={item.placeholder}/>
                         </div>
                     ))}
                     <Button text="Atualizar"/>

@@ -20,8 +20,12 @@ export function Table({ data, columns, type }){
                             <td key={index}  className={index <= 1 ? 'firstItens' : 'itensTable'}>{item[col.key]}</td>
                         ))}
                         <td className='icons'>
-                            <Trash2 className='trash'/>
-                            <Link to={`/atualizar${type}`}><UserPen className='userPen'/></Link>
+                            <span title='Deletar'>
+                                <Trash2 className='trash'/>
+                            </span>
+                            <span title='Atualizar'>
+                                <Link to={`/atualizar${type}`}><UserPen className='userPen'/></Link>
+                            </span>
                         </td>
                     </tr>
                 ))}

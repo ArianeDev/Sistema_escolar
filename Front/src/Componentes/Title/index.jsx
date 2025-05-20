@@ -5,10 +5,10 @@ export function Title({ text }){
 	return(
 		<div className='containerTopPages'>
 			<h2>{text}</h2>
-			<div className="add">
-				<CirclePlus />
+			<button className="add">
+				<CirclePlus className='iconAdd'/>
 				<p>Adicionar</p>
-			</div>
+			</button>
 		</div>
 	)
 }

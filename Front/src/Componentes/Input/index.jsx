@@ -1,9 +1,9 @@
 import './style.sass';
 
-export function Input({ type, placeholder}){
+export function Input({ register, atributo, type, placeholder}){
     return(
         <div className="input_container">
-            <input type={type} placeholder={placeholder} className='inputForms'/>
+            <input {...register(atributo)} type={type} placeholder={placeholder} className='inputForms'/>
         </div>
     )
 }

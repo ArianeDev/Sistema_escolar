@@ -13,10 +13,14 @@ export function Footer(){
 				</div>
 				<div className="iconsFooter">
 					<a href="https://github.com/ArianeDev" target='_blank' rel='noopener noreferrer'>
-						<Github className='icons'/>
+						<span title='GitHub'>
+							<Github className='icons'/>
+						</span>
 					</a>
 					<a href="https://www.linkedin.com/in/ariane-silva-a21039260/" target='_blank' rel='noopener noreferrer'>
-						<Linkedin className='icons'/>
+						<span title='Linkedin'>
+							<Linkedin className='icons'/>
+						</span>
 					</a>
 				</div>
 			</div>
