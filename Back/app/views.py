@@ -3,7 +3,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework import permissions
 
-from .serializer import LoginSerializer, UsuarioSerialier, DisciplinaSerializer, AmbienteSerializer
+from .serializer import LoginSerializer, UsuarioSerializer, DisciplinaSerializer, AmbienteSerializer
 from .models import Usuario, Disciplina, Ambiente
 from .permission import IsGestor, IsProfessor
 
@@ -13,13 +13,13 @@ class LoginView(TokenObtainPairView):
 # Professores
 
 class Professores_GET_POST(ListCreateAPIView):
-    queryset = Disciplina.objects.all()
-    serializer_class = UsuarioSerialier
+    queryset = Usuario.objects.filter(tipo_usuario='P')
+    serializer_class = UsuarioSerializer
     permission_classes = [IsGestor]
 
 class Professor_GET_PUT_PATCH_DELETE(RetrieveUpdateDestroyAPIView):
     queryset = Usuario.objects.all()
-    serializer_class = UsuarioSerialier
+    serializer_class = UsuarioSerializer
     permission_classes = [IsGestor]
 
 # Disciplina

@@ -14,6 +14,3 @@ urlpatterns = [
     path('ambiente/', view=Ambiente_GET_POST.as_view()),
     path('ambiente/<int:pk>', view=Ambiente_GET_PUT_PATCH_DELETE.as_view()),
 ]
-
-# professor reservas
-# professor disciplina

@@ -3,10 +3,10 @@ from rest_framework import serializers
 
 from .models import Usuario, Disciplina, Ambiente
 
-class UsuarioSerialier(serializers.ModelSerializer):
+class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
-        fields = '__all__'
+        fields = ['id', 'username', 'password', 'email', 'ni', 'telefone', 'dt_nascimento', 'dt_contratacao', 'tipo_usuario']
 
 class DisciplinaSerializer(serializers.ModelSerializer):
     class Meta:

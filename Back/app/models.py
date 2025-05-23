@@ -13,10 +13,10 @@ TIPO_USUARIO = [
 ]
 
 class Usuario(AbstractUser):
-    ni = models.CharField(max_length=15)
+    ni = models.CharField(max_length=15, unique=True)
     telefone = models.CharField(max_length=14)
-    dt_nascimento = models.DateField()
-    dt_contratacao = models.DateField()
+    dt_nascimento = models.DateField(blank=True, null=True)
+    dt_contratacao = models.DateField(blank=True, null=True)
     tipo_usuario = models.CharField(max_length=20, choices=TIPO_USUARIO)
 
     # Evitar conflito com o Django
