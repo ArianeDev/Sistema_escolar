@@ -35,49 +35,167 @@ const professorColumns = [
     { key: 'dt_contratacao', label: 'Data contratação' },
 ];
 
-const listInputProfessor = [
-    {
-        "type": "text",
-        "placeholder": "Atualize o primeiro nome...",
-        "labelName": "Nome:"
-    },
-    {
-        "type": "text",
-        "placeholder": "Atualize o segundo nome...",
-        "labelName": "Sobrenome:"
-    },
-    {
-        "type": "email",
-        "placeholder": "Atualize o email...",
-        "labelName": "Email:"
-    },
-    {
-        "type": "text",
-        "placeholder": "Atualize o telefone...",
-        "labelName": "Telefone:"
-    },
-    {
-        "type": "text",
-        "placeholder": "Atualize o cargo...",
-        "labelName": "Cargo:"
-    }
-]
-const listInputAmbiente = [
-    {
-        "type": "text",
-        "placeholder": "Atualize o primeiro nome...",
-        "labelName": "Nome:"
-    },
-]
-const listInputDisciplina = [
-    {
-        "type": "text",
-        "placeholder": "fggffg o primeiro nome...",
-        "labelName": "Nome:"
-    },
-]
-
 const GlobalLayout = () => {
+    // Atributos de todos as tabelas
+
+    // Professor
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const [ni, setNi] = useState('');
+    const [telefone, setTelefone] = useState('');
+    const [dt_nascimento, setDt_nascimento] = useState('');
+    const [dt_contratacao, setDt_contratacao] = useState('');
+
+    const listInputProfessor = [
+        {
+            "type": "text",
+            "value": username,
+            "setFunction": setUsername,
+            "placeholder": "Digite o nome...",
+            "labelName": "Nome:"
+        },
+        {
+            "type": "password",
+            "value": password,
+            "setFunction": setPassword,
+            "placeholder": "Digite a senha...",
+            "labelName": "Senha:"
+        },
+        {
+            "type": "email",
+            "value": email,
+            "setFunction": setEmail,
+            "placeholder": "Digite o email...",
+            "labelName": "Email:"
+        },
+        {
+            "type": "text",
+            "value": ni,
+            "setFunction": setNi,
+            "placeholder": "Digite o NI...",
+            "labelName": "NI:"
+        },
+        {
+            "type": "text",
+            "value": telefone,
+            "setFunction": setTelefone,
+            "placeholder": "Digite o telefone...",
+            "labelName": "Telefone:"
+        },
+        {
+            "type": "text",
+            "value": dt_nascimento,
+            "setFunction": setDt_nascimento,
+            "placeholder": "Digite a data de nascimento...",
+            "labelName": "Data de nascimento:"
+        },
+        {
+            "type": "text",
+            "value": dt_contratacao,
+            "setFunction": setDt_contratacao,
+            "placeholder": "Digite a data de contratação...",
+            "labelName": "Data de contratação:"
+        },
+    ]
+
+    // Disciplina
+    const [nome, setNome] = useState('');
+    const [curso, setCurso] = useState('');
+    const [carga_horaria, setCarga_horaria] = useState('');
+    const [decricao, setDecricao] = useState('');
+    const [professor_responsavel, setProfessor_responsavel] = useState('');
+
+    const listInputDisciplina = [
+        {
+            "type": "text",
+            "value": nome,
+            "setFunction": setNome,
+            "placeholder": "Digite o nome da disciplina...",
+            "labelName": "Nome:"
+        },
+        {
+            "type": "text",
+            "value": curso,
+            "setFunction": setCurso,
+            "placeholder": "Digite o curso...",
+            "labelName": "Curso:"
+        },
+        {
+            "type": "number",
+            "value": carga_horaria,
+            "setFunction": setCarga_horaria,
+            "placeholder": "Digite a carga horária...",
+            "labelName": "Carga horária:"
+        },
+        {
+            "type": "text",
+            "value": decricao,
+            "setFunction": setDecricao,
+            "placeholder": "Digite a descrição...",
+            "labelName": "Descrição:"
+        },
+        {
+            "type": "select",
+            "value": professor_responsavel,
+            "setFunction": setProfessor_responsavel,
+            "placeholder": "",
+            "labelName": 'Professor responsável:',
+        }
+    ]
+
+    // Ambiente
+    const [dt_inicio, setDt_inicio] = useState('');
+    const [dt_termino, setDt_termino] = useState('');
+    const [periodo, setPeriodo] = useState('');
+    const [sala_reservada, setSala_reservada] = useState('');
+    const [disciplina, setDisciplina] = useState('');
+
+    const listInputAmbiente = [
+        {
+            "type": "text",
+            "value": sala_reservada,
+            "setFunction": setSala_reservada,
+            "placeholder": "Digite a sala reservada...",
+            "labelName": "Sala reservada:"
+        },
+        {
+            "type": "date",
+            "value": dt_inicio,
+            "setFunction": setDt_inicio,
+            "placeholder": "Digite a data de início...",
+            "labelName": "Data de início:"
+        },
+        {
+            "type": "date",
+            "value": dt_termino,
+            "setFunction": setDt_termino,
+            "placeholder": "Digite a data de término...",
+            "labelName": "Data de término:"
+        },
+        {
+            "type": "text",
+            "value": periodo,
+            "setFunction": setPeriodo,
+            "placeholder": "Digite o período...",
+            "labelName": 'Período:'
+        },
+        {
+            "type": "select",
+            "value": professor_responsavel,
+            "setFunction": setProfessor_responsavel,
+            "placeholder": "",
+            "labelName": 'Professor responsável:',
+        },
+        {
+            "type": 'select',
+            "value": disciplina,
+            "setFunction": setDisciplina,
+            "placeholder": "",
+            'labelName': 'Disciplina:',
+        }
+    ]
+
     const [ambienteData, setAmbienteData] = useState([]);
     const [disciplinaData, setDisiciplinaData] = useState([]);
     const [professorData, setProfessorData] = useState([]);
@@ -163,7 +281,7 @@ const GlobalLayout = () => {
     // Definição das rotas
     let content, text;
     if(location.pathname.includes("home")){
-        content = <Table data={professorData} columns={professorColumns} type="Professor" />
+        content = <Table typeURL="professor" listAtributos={listInputProfessor} data={professorData} columns={professorColumns} type="Professor" />
         text = <Title text="Professores" />
     } else if (location.pathname.includes("ambiente")) {
         content = <Table data={ambienteData} columns={ambienteColumns} type="Ambiente" />
