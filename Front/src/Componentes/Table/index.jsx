@@ -8,10 +8,12 @@ export function Table({ data, columns, type }){
     return(
         <table>
             <thead>
-                {columns.map((col, index) => (
-                    <th key={index}>{col.label}</th>
-                ))}
-                <th className='actionData'>Ações</th>
+                <tr>
+                    {columns.map((col, index) => (
+                        <th key={index} className={index <= 1 ? 'firstItens' : ''}>{col.label}</th>
+                    ))}
+                    <th className='actionData'>Ações</th>
+                </tr>
             </thead>
             <tbody>
                 {data.map((item, key) => (

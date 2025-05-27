@@ -7,93 +7,32 @@ import { NavBar } from "../Componentes/NavBar";
 import { Table } from "../Componentes/Table";
 import { Footer } from "../Componentes/Footer";
 import { Title } from "../Componentes/Title";
+import { use, useEffect, useState } from "react";
+import api from "../service/api";
 import './style.sass'
 
-const professorColumns = [
+const ambienteColumns = [
+    { key: 'sala_reservada', label: 'Sala' },
+    { key: 'dt_inicio', label: 'Data ínicio' },
+    { key: 'dt_termino', label: 'Data final' },
+    { key: 'periodo', label: 'Período' },
+    { key: 'professor_responsavel', label: 'Professor' },
+    { key: 'disciplina', label: 'Disciplina' },
+];
+const disciplinaColumns = [
     { key: 'nome', label: 'Nome' },
+    { key: 'curso', label: 'Curso' },
+    { key: 'carga_horaria', label: 'Carga horária' },
+    { key: 'decricao', label: 'Descrição' },
+    { key: 'professor_responsavel', label: 'Professor' },
+];
+const professorColumns = [
+    { key: 'username', label: 'Nome' },
     { key: 'email', label: 'Email' },
     { key: 'ni', label: 'NI' },
     { key: 'telefone', label: 'Telefone' },
-    { key: 'Cargo', label: 'Cargo' },
     { key: 'dt_nascimento', label: 'Data nascimento' },
     { key: 'dt_contratacao', label: 'Data contratação' },
-];
-const ambienteColumns = [
-    { key: 'nome', label: 'Nome' },
-    { key: 'email', label: 'Email' },
-    { key: 'ni', label: 'NI' },
-    { key: 'telefone', label: 'Telefone' },
-    { key: 'Cargo', label: 'Cargo' },
-];
-
-const professorData = [
-    {
-        nome: "Gabriela Alejandra Bergamine dos Santos",
-        email: "naoseioquenaoseioque@gmail.com",
-        ni: "45345/12",
-        telefone: "(19) 12345-6789",
-        dt_nascimento: "20/90/2025",
-        dt_contratacao: "08/05/2025",
-        Cargo: "Professor"
-    },
-];
-const ambienteData = [
-    {
-        nome: "Ariane Oliveira Silva",
-        email: "ariane@gmail.com",
-        ni: "45345",
-        telefone: "435345",
-        Cargo: "Professor"
-    },
-    {
-        nome: "Ariane Oliveira Silva",
-        email: "ariane@gmail.com",
-        ni: "45345",
-        telefone: "435345",
-        Cargo: "Professor"
-    },
-    {
-        nome: "Ariane Oliveira Silva",
-        email: "ariane@gmail.com",
-        ni: "45345",
-        telefone: "435345",
-        Cargo: "Professor"
-    },
-    {
-        nome: "Ariane Oliveira Silva",
-        email: "ariane@gmail.com",
-        ni: "45345",
-        telefone: "435345",
-        Cargo: "Professor"
-    },
-    {
-        nome: "Ariane Oliveira Silva",
-        email: "ariane@gmail.com",
-        ni: "45345",
-        telefone: "435345",
-        Cargo: "Professor"
-    },
-    {
-        nome: "Ariane Oliveira Silva",
-        email: "ariane@gmail.com",
-        ni: "45345",
-        telefone: "435345",
-        Cargo: "Professor"
-    },
-    {
-        nome: "Ariane Oliveira Silva",
-        email: "ariane@gmail.com",
-        ni: "45345",
-        telefone: "435345",
-        Cargo: "Professor"
-    },
-    {
-        nome: "Ariane Oliveira Silva",
-        email: "ariane@gmail.com",
-        ni: "45345",
-        telefone: "435345",
-        Cargo: "Professor"
-    },
 ];
 
 const listInputProfessor = [
@@ -139,7 +78,87 @@ const listInputDisciplina = [
 ]
 
 const GlobalLayout = () => {
+    const [ambienteData, setAmbienteData] = useState([]);
+    const [disciplinaData, setDisiciplinaData] = useState([]);
+    const [professorData, setProfessorData] = useState([]);
     const location = useLocation();
+    const token = localStorage.getItem('token');
+    
+    async function getAmbientes(professores, disciplinas) {
+        try {
+            const response = await api.get('/ambiente', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            const listAmbiente = response.data;
+
+            const listAmbienteProfessorDisciplina = listAmbiente.map(ambiente => {
+                const professor = professores.find(amb => amb.id === ambiente.professor_responsavel);
+                const disciplina = disciplinas.find(disc => disc.id === ambiente.disciplina);
+                return {
+                    ...ambiente,
+                    professor_responsavel: professor ? professor.username : 'Não atribuído',
+                    disciplina: disciplina ? disciplina.nome : 'Não atribuída'
+                };
+            })
+
+            setAmbienteData(listAmbienteProfessorDisciplina);
+        } catch (error) {
+            console.error("Erro ao buscar ambiente: ", error);
+        }
+    }
+    async function getDisciplina(professores) {
+        try {
+            const response = await api.get('/disciplina', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            const listDisciplina = response.data;
+
+            const listDisciplinaProfessor = listDisciplina.map(disciplina => {
+                const professor = professores.find(prof => prof.id === disciplina.professor_responsavel);
+                return {
+                    ...disciplina,
+                    professor_responsavel: professor ? professor.username : 'Não atribuído'
+                };
+            })
+            
+            setDisiciplinaData(listDisciplinaProfessor);
+        } catch (error) {
+            console.error("Erro ao buscar disciplina: ", error);
+        }
+    }
+    async function getProfessores() {
+        try {
+            const response = await api.get('/professor', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            const listProfessor = response.data;
+            setProfessorData(listProfessor);
+        } catch (error) {
+            console.error("Erro ao buscar professores: ", error);
+        }
+    }
+
+    useEffect(() => {
+        getProfessores();
+    }, [])
+
+    useEffect(() => {
+        if (professorData.length > 0) {
+            getDisciplina(professorData);
+        }
+    }, [professorData]);
+
+    useEffect(() => {
+        if (disciplinaData.length > 0) {
+            getAmbientes(professorData, disciplinaData);
+        }
+    }, [disciplinaData]);
     
     // Definição das rotas
     let content, text;
@@ -150,7 +169,7 @@ const GlobalLayout = () => {
         content = <Table data={ambienteData} columns={ambienteColumns} type="Ambiente" />
         text = <Title text="Ambientes" />
     } else if (location.pathname.includes("disciplina")) {
-        content = <Table data={ambienteData} columns={ambienteColumns} type="Disciplina" />
+        content = <Table data={disciplinaData} columns={disciplinaColumns} type="Disciplina" />
         text = <Title text="Disciplinas" />
     } else if (location.pathname.includes("atualizarProfessor")) {
         content = <FormsInputs listInput={listInputProfessor} method="PUT" />

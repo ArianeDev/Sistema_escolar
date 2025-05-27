@@ -1,9 +1,15 @@
 import './style.sass';
 
-export function Input({ register, atributo, type, placeholder}){
+export function Input({ atributo, type, placeholder, setFunction }) {
     return(
         <div className="input_container">
-            <input {...register(atributo)} type={type} placeholder={placeholder} className='inputForms'/>
+            <input 
+                type={type} 
+                value={atributo} 
+                placeholder={placeholder} 
+                onChange={(e) => setFunction(e.target.value)}
+                className='inputForms'
+            />
         </div>
     )
 }

@@ -7,8 +7,18 @@ from .serializer import LoginSerializer, UsuarioSerializer, DisciplinaSerializer
 from .models import Usuario, Disciplina, Ambiente
 from .permission import IsGestor, IsProfessor
 
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.response import Response
+
 class LoginView(TokenObtainPairView):
     serializer_class = LoginSerializer
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_me(request):
+    serializer = UsuarioSerializer(request.user)
+    return Response(serializer.data)
 
 # Professores
 

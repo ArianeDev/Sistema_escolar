@@ -3,10 +3,12 @@ from .views import (
     LoginView, 
     Professores_GET_POST, Professor_GET_PUT_PATCH_DELETE,
     Disciplina_GET_POST, Disciplina_GET_PUT_PATCH_DELETE,
-    Ambiente_GET_POST, Ambiente_GET_PUT_PATCH_DELETE)
+    Ambiente_GET_POST, Ambiente_GET_PUT_PATCH_DELETE,
+    get_me)
 
 urlpatterns = [
     path('login/', view=LoginView.as_view()),
+    path('me/', get_me, name='get_me'),
     path('professor/', view=Professores_GET_POST.as_view()),
     path('professor/<int:pk>', view=Professor_GET_PUT_PATCH_DELETE.as_view()),
     path('disciplina/', view=Disciplina_GET_POST.as_view()),

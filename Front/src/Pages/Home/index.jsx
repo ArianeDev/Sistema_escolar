@@ -1,5 +1,3 @@
-
-import { Table } from '../../Componentes/Table';
 import './style.sass'
 
 export function Home(){
