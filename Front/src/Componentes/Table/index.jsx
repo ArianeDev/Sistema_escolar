@@ -4,10 +4,12 @@ import { Trash2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Modal } from '../Modal';
+import  api  from '../../service/api';
 
-export function Table({ typeURL, listAtributos, data, columns, type }){
+export function Table({ typeURL, listInput, data, columns, type }){
     const [isOpen, setIsOpen] = useState(false);
     const [selecionado, setSelecionado] = useState(null);
+    const token = localStorage.getItem('token');
 
     function handleOpenModal(selecionado) {
         setSelecionado(selecionado);
@@ -18,6 +20,15 @@ export function Table({ typeURL, listAtributos, data, columns, type }){
         setSelecionado(null);
         setIsOpen(false);
     }
+
+    const submitDelete = async (id) => {
+		try{
+			await api.delete(`/${typeURL}/${id}`, {headers: {Authorization: `Bearer ${token}`}});
+			window.location.reload();
+		} catch (error) {
+			console.error("Erro na requisição:", error);
+		}
+	}
 
     return(
         <>
@@ -32,13 +43,13 @@ export function Table({ typeURL, listAtributos, data, columns, type }){
                 </thead>
                 <tbody>
                     {data.map((item, key) => (
-                        <tr key={key}>
+                        <tr key={item.id || key}>
                             {columns.map((col, index) => (
                                 <td key={index}  className={index <= 1 ? 'firstItens' : 'itensTable'}>{item[col.key]}</td>
                             ))}
                             <td className='icons'>
                                 <span title='Deletar'>
-                                    <Trash2 className='trash'/>
+                                    <button onClick={() => submitDelete(item.id)}><Trash2 className='trash'/></button>
                                 </span>
                                 <span title='Atualizar'>
                                     <button onClick={() => handleOpenModal(item)}><UserPen className='userPen'/></button>
@@ -49,10 +60,10 @@ export function Table({ typeURL, listAtributos, data, columns, type }){
                 </tbody>
             </table>
 
-            {isOpen && selecionado && (
+            {isOpen && (
                 <Modal 
-                    typeURL={typeURL} 
-                    listAtributos={listAtributos}
+                    typeURL={typeURL}
+                    listInput={listInput}
                     itemSelecionando={selecionado} 
                     onClose={handleCloseModal} 
                     isOpen={isOpen}

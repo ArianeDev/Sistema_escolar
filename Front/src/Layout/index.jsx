@@ -98,6 +98,7 @@ const GlobalLayout = () => {
             "labelName": "Data de contratação:"
         },
     ]
+    
 
     // Disciplina
     const [nome, setNome] = useState('');
@@ -281,7 +282,7 @@ const GlobalLayout = () => {
     // Definição das rotas
     let content, text;
     if(location.pathname.includes("home")){
-        content = <Table typeURL="professor" listAtributos={listInputProfessor} data={professorData} columns={professorColumns} type="Professor" />
+        content = <Table typeURL="professor" listInput={listInputProfessor} data={professorData} columns={professorColumns} type="Professor" />
         text = <Title text="Professores" />
     } else if (location.pathname.includes("ambiente")) {
         content = <Table data={ambienteData} columns={ambienteColumns} type="Ambiente" />

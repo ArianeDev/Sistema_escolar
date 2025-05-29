@@ -1,43 +1,56 @@
-import './style.sass';
+import { useState, useEffect } from 'react';
 import { FormsInputs } from '../Forms';
-import { useContext, useEffect, useState } from 'react';
-import  api  from '../../service/api';
+import api from '../../service/api';
+import './style.sass';
 
-export function Modal({ typeURL, listAtributos, itemSelecionando, onClose, isOpen}){
-    const token = localStorage.getItem('token');
+export function Modal({ typeURL, itemSelecionando, listInput, onClose, isOpen}){
     const [formData, setFormData] = useState({});
-
-    console.log(formData);
-
+    const token = localStorage.getItem('token');
 
     useEffect(() => {
         if (itemSelecionando) {
             const initialData = {};
-            listAtributos.forEach(attr => {
-              initialData[attr] = itemSelecionando[attr] || "";
+            listInput.forEach(attr => {
+                const key = attr.key  || attr.labelName?.toLowerCase().replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_]/g, '');
+                initialData[key] = itemSelecionando[key] || '';
             });
             setFormData(initialData);
-          }
-    }, [itemSelecionando]);
+        }
+    }, [itemSelecionando, listInput]);
 
-    const submitUpdate = async () => {
-		try{
-			const response = await api.put(`/${typeURL}/${itemSelecionando.id}`, formData, {headers: {Authorization: `Bearer ${token}`}});
-			console.log("Atualizado com sucesso", response.data)
+    const handleChange = (key, value) => {
+        setFormData(prevData => ({
+            ...prevData,
+            [key]: value
+        }));
+    }
 
-		} catch (error) {
-			console.error("Erro na requisição:", error);
-		}
-	}
+    const handleSubmitUpadte = async (e) => {
+        e.preventDefault();
+        try{
+            api.put(`/${typeURL}/${itemSelecionando.id}`, { ...formState, tipo_usuario: typeURL === "professor" ? "P" : undefined}, {
+                headers: {Authorization: `Bearer ${token}`}
+            });
 
-	const handleSubmitUpdate = (e) => {
-		e.preventDefault();
-        submitUpdate();
-	}
+            window.location.reload();
+            onClose();
+
+        } catch (error) {
+            console.error("Erro na requisição:", error);
+        }
+    }
+
+    console.log(itemSelecionando)
 
     if(!isOpen){
         return null;
     }
+
+    const inputs = listInput.map(attr => ({
+        ...attr,
+        value: formData[attr.key || attr.labelName?.toLowerCase().replace(/\s+/g, '_')] || '',
+        setFunction: (val) => handleChange(attr.key || attr.labelName?.toLowerCase().replace(/\s+/g, '_'), val)
+    }));
 
     return(
         <div className="modalBack">
@@ -47,12 +60,12 @@ export function Modal({ typeURL, listAtributos, itemSelecionando, onClose, isOpe
                 </div>
                 <div className="modalMain">
                     <div className="foms">
-                        <FormsInputs 
-                            listInput={listAtributos} 
-                            formData={formData}
-                            methodFunction={handleSubmitUpdate} 
-                            method="PUT" title="Atualizar" 
-                            textButton="Atualizar"/>
+                    <FormsInputs 
+                        listInput={listInput} 
+                        methodFunction={handleSubmitUpadte} 
+                        method="put"
+                        title="Atualizar"
+                        textButton="Atualizar"/>
                     </div>
                 </div>
             </div>
