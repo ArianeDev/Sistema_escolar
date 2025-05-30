@@ -41,9 +41,17 @@ table
             height: 10vh
             align-items: center
 
-            .trash
-                color: rgb(218, 0, 0)
-                margin-left: 0.5rem
+            button
+                background-color: transparent
+                border: none
+                cursor: pointer
 
-            .userPen
-                color: rgb(167, 167, 167)
+                .trash
+                    color: rgb(218, 0, 0)
+                    margin-left: 0.5rem
+
+                .userPen
+                    color: rgb(167, 167, 167)
+
+                .trash:hover, .userPen:hover
+                    color: rgb(207, 207, 207)

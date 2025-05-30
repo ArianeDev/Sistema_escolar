@@ -1,9 +1,10 @@
+import { useState, useEffect } from 'react';
 import { Input } from '../Input';
 import { Label } from '../Label';
 import { Button } from '../Button';
 import './style.sass';
 
-export function FormsInputs({ listInput, methodFunction, method, title, textButton }){
+export function FormsInputs({ listInput, methodFunction, method, title, textButton }){    
     return(
         <div className="containerForm">
             <div className="forms">
