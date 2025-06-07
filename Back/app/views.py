@@ -25,7 +25,11 @@ def get_me(request):
 class Professores_GET_POST(ListCreateAPIView):
     queryset = Usuario.objects.filter(tipo_usuario='P')
     serializer_class = UsuarioSerializer
-    permission_classes = [IsGestor]
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            return [permissions.IsAuthenticated()]
+        
+        return [IsGestor()]
 
 class Professor_GET_PUT_PATCH_DELETE(RetrieveUpdateDestroyAPIView):
     queryset = Usuario.objects.all()

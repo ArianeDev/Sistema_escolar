@@ -4,19 +4,16 @@ import './style.sass'
 
 export function NavBar() {
     const navigate = useNavigate();
+    const cargo = localStorage.getItem('cargo');
 
-    const items = [
+    const itemsG = [
         {
             label: 'Ambientes',
             icon: 'pi pi-file',
             items: [
                 {
-                    label: 'Cadastrar',
-                    command: () => navigate('/cadastrarAmbiente')
-                },
-                {
                     label: 'Visualizar',
-                    command: () => navigate('/ambiente')
+                    command: () => navigate('/home')
                 }
             ]
         },
@@ -24,10 +21,6 @@ export function NavBar() {
             label: 'Disciplina',
             icon: 'pi pi-file',
             items: [
-                {
-                    label: 'Cadastrar',
-                    command: () => navigate('/cadastrarDisciplina')
-                },
                 {
                     label: 'Visualizar',
                     command: () => navigate('/disciplina')
@@ -39,16 +32,43 @@ export function NavBar() {
             icon: 'pi pi-file',
             items: [
                 {
-                    label: 'Cadastrar',
-                    command: () => navigate('/cadastrarProfessor')
-                },
+                    label: 'Visualizar',
+                    command: () => navigate('/Professor')
+                }
+            ]
+        },
+    ];
+
+    const itemsP = [
+        {
+            label: 'Ambientes',
+            icon: 'pi pi-file',
+            items: [
                 {
                     label: 'Visualizar',
                     command: () => navigate('/home')
                 }
             ]
         },
+        {
+            label: 'Disciplina',
+            icon: 'pi pi-file',
+            items: [
+                {
+                    label: 'Visualizar',
+                    command: () => navigate('/disciplina')
+                }
+            ]
+        },
     ];
+
+    let items = '';
+
+    if (cargo === 'G'){
+        items = itemsG;
+    } else{
+        items = itemsP;
+    }
 
     return (
         <div className='navBar'>
