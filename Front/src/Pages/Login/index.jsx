@@ -2,16 +2,44 @@ import { FormsInputs } from "../../Componentes/Forms";
 import { useNavigate } from "react-router-dom";
 import { UserRound } from "lucide-react";
 import { useState } from "react";
+import { z } from "zod";
 import axios from 'axios';
 import './style.sass';
+
+const loginValidacao = z.object({
+  username: z
+    .string()
+    .min(3, "O nome do usuário tem que conter no mínimo 3 caracteres")
+    .max(15, "O nome do usuário tem que conter no máximo 15 caracteres"),
+  password: z
+    .string()
+    .min(1, "A senha é um campo obrigatório")
+    .max(10, "A senha deve ter no máximo 10 caracteres"),
+});
 
 export function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [errors, setErrors] = useState('')
+    const [errorLogin, setErrorLogin] = useState('')
     const navigate = useNavigate();
+
 
     const handleLogin = async (e) => {
         e.preventDefault();
+
+        const validacao = loginValidacao.safeParse({ username, password });
+
+        if (!validacao.success) {
+            const campos = {};
+            validacao.error.errors.forEach(error => {
+                campos[error.path[0]] = error.message;
+            });
+            setErrors(campos);
+            return;
+        }
+
+        setErrors({});
 
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/login/', {
@@ -43,8 +71,7 @@ export function Login() {
             navigate('home');
         } catch (error) {
             console.error("Erro no login", error);
-            alert("Credenciais inválidas");
-            console.log(username, password);
+            setErrorLogin("Erro ao fazer o login");
         }
 
     }
@@ -79,6 +106,9 @@ export function Login() {
                         <h1 className="h1_titleLogin">Login</h1>
                     </div>
                     <FormsInputs listInput={listLogin} method="post" methodFunction={handleLogin} textButton="Logar"/>
+                    {errors.username && <p>{errors.username}</p>}
+                    {errors.username && <p>{errors.username}</p>}
+                    {errorLogin && <p>{errorLogin}</p>}
                 </div>
             </div>
         </main>
